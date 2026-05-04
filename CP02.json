@@ -1,0 +1,636 @@
+[
+    {
+        "id": "0954e87b03b4c32b",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "4fd6335bd828d3e8",
+        "type": "mqtt-broker",
+        "name": "hive free1",
+        "broker": "broker.hivemq.com",
+        "port": "1883",
+        "tls": "566c12946ea77390",
+        "clientid": "node_red_dashboard",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "ae07cd3d3fccf5b2",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "d04fd2c1e93b9167",
+        "type": "ui_tab",
+        "name": "Máquina",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "75a7e1ce8be52e1d",
+        "type": "ui_tab",
+        "name": "Clima Externo",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "0d8def7995d1281e",
+        "type": "ui_tab",
+        "name": "Alertas",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "b07cb29381cf1692",
+        "type": "ui_group",
+        "name": "Sensores",
+        "tab": "d04fd2c1e93b9167",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "2eeafe6a7067bc7a",
+        "type": "ui_group",
+        "name": "Histórico",
+        "tab": "d04fd2c1e93b9167",
+        "order": 2,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "d77096c49af5934a",
+        "type": "ui_group",
+        "name": "Clima",
+        "tab": "75a7e1ce8be52e1d",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "cf3924b6f70cb54c",
+        "type": "ui_group",
+        "name": "Notificações",
+        "tab": "0d8def7995d1281e",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "566c12946ea77390",
+        "type": "tls-config",
+        "name": "tls_hivemq",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "",
+        "keyname": "",
+        "caname": "",
+        "servername": "",
+        "verifyservercert": true,
+        "alpnprotocol": ""
+    },
+    {
+        "id": "3fb57533b9daa5da",
+        "type": "MySQLdatabase",
+        "name": "",
+        "host": "localhost",
+        "port": "3306",
+        "db": "iot",
+        "tz": "",
+        "charset": "UTF8"
+    },
+    {
+        "id": "3ac25b3bf3b20b34",
+        "type": "function",
+        "z": "0954e87b03b4c32b",
+        "name": "Unir Dados",
+        "func": "let data = flow.get(\"dados\") || {};\n\ndata = {\n    temperatura: data.temperatura,\n    umidade: data.umidade,\n    distancia: data.distancia\n};\n\nif (msg.topic === \"maquina1/temperatura\") {\n    data.temperatura = Number(msg.payload);\n}\n\nif (msg.topic === \"maquina1/umidade\") {\n    data.umidade = Number(msg.payload);\n}\n\nif (msg.topic === \"maquina1/distancia\") {\n    data.distancia = Number(msg.payload);\n}\n\nflow.set(\"dados\", data);\n\nmsg.payload = data;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 240,
+        "wires": [
+            [
+                "bf2dafa70c7c65f3",
+                "192f79a6edb4bc74",
+                "e895dadff0affe4f",
+                "f9b3bc63f7ee8293",
+                "14c5ca623272e8ed"
+            ]
+        ]
+    },
+    {
+        "id": "bf2dafa70c7c65f3",
+        "type": "function",
+        "z": "0954e87b03b4c32b",
+        "name": "Validação",
+        "func": "let p = msg.payload;\n\nif (typeof p === \"string\") {\n    try {\n        p = JSON.parse(p);\n    } catch (e) {\n        return null;\n    }\n}\n\nif (!p) return null;\n\nlet temperatura = Number(p.temperatura);\nlet umidade = Number(p.umidade);\nlet distancia = Number(p.distancia);\n\nif (\n    !isFinite(temperatura) ||\n    !isFinite(umidade) ||\n    !isFinite(distancia)\n) {\n    return null;\n}\n\nmsg.payload = {\n    temperatura,\n    umidade,\n    distancia\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 240,
+        "wires": [
+            [
+                "746ba979e14825e7"
+            ]
+        ]
+    },
+    {
+        "id": "bec3ebdac5f3fd8b",
+        "type": "mqtt in",
+        "z": "0954e87b03b4c32b",
+        "name": "maquina umidade",
+        "topic": "maquina1/umidade",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "4fd6335bd828d3e8",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 310,
+        "y": 280,
+        "wires": [
+            [
+                "3ac25b3bf3b20b34"
+            ]
+        ]
+    },
+    {
+        "id": "746ba979e14825e7",
+        "type": "function",
+        "z": "0954e87b03b4c32b",
+        "name": "Montar Query",
+        "func": "let p = msg.payload;\n\nmsg.topic =\n    \"INSERT INTO leituras (temperatura, umidade, distancia) VALUES (\" +\n    p.temperatura + \",\" +\n    p.umidade + \",\" +\n    p.distancia + \")\";\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 140,
+        "wires": [
+            [
+                "f0a8bbf63f1633b1"
+            ]
+        ]
+    },
+    {
+        "id": "8973fcfd2bf0ef53",
+        "type": "http request",
+        "z": "0954e87b03b4c32b",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://api.openweathermap.org/data/2.5/weather?q=Osasco,BR&appid=cb2f8757cd6db945df7cb7ab8c5adc14&units=metric",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 430,
+        "y": 480,
+        "wires": [
+            [
+                "38cfb8fbdcb8b3b7"
+            ]
+        ]
+    },
+    {
+        "id": "0eaee4fccf7e467a",
+        "type": "inject",
+        "z": "0954e87b03b4c32b",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "30000",
+        "payload": "",
+        "payloadType": "date",
+        "x": 310,
+        "y": 420,
+        "wires": [
+            [
+                "8973fcfd2bf0ef53"
+            ]
+        ]
+    },
+    {
+        "id": "38cfb8fbdcb8b3b7",
+        "type": "function",
+        "z": "0954e87b03b4c32b",
+        "name": "Processar Respostas",
+        "func": "msg.payload = {\n    temp_ext: msg.payload.main.temp,\n    umid_ext: msg.payload.main.humidity\n};\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 540,
+        "wires": [
+            [
+                "faf2e817d2c4b56c",
+                "75a18e434e35ca30"
+            ]
+        ]
+    },
+    {
+        "id": "4fcf271bcaea87ee",
+        "type": "mqtt in",
+        "z": "0954e87b03b4c32b",
+        "name": "maquina distancia",
+        "topic": "maquina1/distancia",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "4fd6335bd828d3e8",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 310,
+        "y": 320,
+        "wires": [
+            [
+                "3ac25b3bf3b20b34"
+            ]
+        ]
+    },
+    {
+        "id": "c3fb5b0cbc10892a",
+        "type": "mqtt in",
+        "z": "0954e87b03b4c32b",
+        "name": "maquina temperatura",
+        "topic": "maquina1/temperatura",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "4fd6335bd828d3e8",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 320,
+        "y": 240,
+        "wires": [
+            [
+                "3ac25b3bf3b20b34"
+            ]
+        ]
+    },
+    {
+        "id": "e895dadff0affe4f",
+        "type": "ui_gauge",
+        "z": "0954e87b03b4c32b",
+        "name": "Temperatura",
+        "group": "b07cb29381cf1692",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperatura",
+        "label": "units",
+        "format": "{{value}} °C",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 890,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "192f79a6edb4bc74",
+        "type": "ui_gauge",
+        "z": "0954e87b03b4c32b",
+        "name": "Umidade",
+        "group": "b07cb29381cf1692",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperatura",
+        "label": "units",
+        "format": "{{value}} %",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 880,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "f9b3bc63f7ee8293",
+        "type": "ui_gauge",
+        "z": "0954e87b03b4c32b",
+        "name": "Distância",
+        "group": "b07cb29381cf1692",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "gauge",
+        "label": "units",
+        "format": "{{value}} cm",
+        "min": 0,
+        "max": "400",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 880,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "faf2e817d2c4b56c",
+        "type": "ui_gauge",
+        "z": "0954e87b03b4c32b",
+        "name": "Umidade Externa",
+        "group": "d77096c49af5934a",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Umid. Externa",
+        "label": "units",
+        "format": "{{value}} %",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 910,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "75a18e434e35ca30",
+        "type": "ui_gauge",
+        "z": "0954e87b03b4c32b",
+        "name": "Temperatura Externa",
+        "group": "d77096c49af5934a",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temp..Externa",
+        "label": "units",
+        "format": "{{value}} °C",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 920,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "14c5ca623272e8ed",
+        "type": "ui_chart",
+        "z": "0954e87b03b4c32b",
+        "name": "Gráfico (Histórico)",
+        "group": "2eeafe6a7067bc7a",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "Histórico dos Sensores",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 910,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f0a8bbf63f1633b1",
+        "type": "mysql",
+        "z": "0954e87b03b4c32b",
+        "mydb": "3fb57533b9daa5da",
+        "name": "",
+        "x": 950,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "50efb8739d4b8d66",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-dashboard": "3.6.6",
+            "node-red-node-mysql": "3.0.0"
+        }
+    }
+]

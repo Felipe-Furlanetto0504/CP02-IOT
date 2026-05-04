@@ -1,0 +1,215 @@
+Nomes: Felipe Furlanetto, Ryan Vetoriano e Raul Rezende
+
+RMS: 562766, 565667 e 564002
+
+TURMA: 2TDSPF
+
+Link do Youtube: https://youtu.be/L2SgzBH5rOk
+
+CÓDIGO DO ESP32:
+
+#include <WiFi.h>
+#include <PubSubClient.h>
+#include "DHT.h"
+
+
+const char* ssid = "Wokwi-GUEST";
+const char* password = "";
+
+
+const char* mqtt_server = "broker.hivemq.com";
+const int mqtt_port = 1883;
+
+
+#define DHTPIN 4
+#define DHTTYPE DHT22
+DHT dht(DHTPIN, DHTTYPE);
+
+
+#define TRIG 5
+#define ECHO 18
+
+WiFiClient espClient;
+PubSubClient client(espClient);
+
+
+void setup_wifi() {
+  WiFi.begin(ssid, password);
+
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+
+  Serial.println("\nWiFi conectado!");
+}
+
+
+void reconnect() {
+  while (!client.connected()) {
+    if (client.connect("ESP32_Wokwi")) {
+      Serial.println("MQTT conectado!");
+    } else {
+      Serial.print("Falha MQTT: ");
+      Serial.println(client.state());
+      delay(2000);
+    }
+  }
+}
+
+
+float lerDistancia() {
+  digitalWrite(TRIG, LOW);
+  delayMicroseconds(2);
+  digitalWrite(TRIG, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(TRIG, LOW);
+
+  long duracao = pulseIn(ECHO, HIGH, 30000);
+
+  if (duracao == 0) return NAN;
+
+  return duracao * 0.034 / 2;
+}
+
+
+void setup() {
+  Serial.begin(115200);
+
+  pinMode(TRIG, OUTPUT);
+  pinMode(ECHO, INPUT);
+
+  dht.begin();
+
+  setup_wifi();
+  client.setServer(mqtt_server, mqtt_port);
+}
+
+
+void loop() {
+  if (!client.connected()) {
+    reconnect();
+  }
+
+  client.loop();
+
+
+  float temperatura = dht.readTemperature();
+  float umidade = dht.readHumidity();
+  float distancia = lerDistancia();
+
+
+  if (isnan(temperatura) || isnan(umidade) || isnan(distancia)) {
+    Serial.println("Leitura inválida ignorada");
+    delay(2000);
+    return;
+  }
+
+  client.publish("maquina1/temperatura", String(temperatura).c_str());
+  client.publish("maquina1/umidade", String(umidade).c_str());
+  client.publish("maquina1/distancia", String(distancia).c_str());
+
+
+  Serial.println("===== DADOS ENVIADOS =====");
+  Serial.println("Temp: " + String(temperatura));
+  Serial.println("Umidade: " + String(umidade));
+  Serial.println("Distancia: " + String(distancia));
+  Serial.println("==========================");
+
+  delay(5000);
+}
+
+
+Script Do Banco De Dados:
+
+CREATE DATABASE iot;
+USE iot;
+
+CREATE TABLE leituras (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    temperatura FLOAT,
+    umidade FLOAT,
+    distancia FLOAT,
+    data_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+Descrição do Projeto:
+
+O projeto consiste em um sistema de monitoramento IoT em tempo real, utilizando um ESP32 como dispositivo principal para aquisição de dados de sensores simulados.
+Os dados coletados são transmitidos via protocolo MQTT para um broker externo, processados em um ambiente intermediário e persistidos em um banco de dados relacional. Posteriormente, são exibidos em um dashboard para monitoramento contínuo.
+O objetivo é simular um cenário industrial de telemetria, garantindo coleta, transmissão, processamento e armazenamento de dados de forma integrada.
+
+Arquitetura da solução
+
+A solução segue uma arquitetura IoT em camadas:
+ESP32 (sensores DHT22 + HC-SR04)
+        ↓
+MQTT Broker (HiveMQ público)
+        ↓
+Node-RED (processamento e validação)
+        ↓
+MySQL (persistência de dados)
+        ↓
+Dashboard (visualização em tempo real)
+
+Tecnologias utilizadas:
+
+ESP32 – aquisição de dados e envio MQTT
+Wokwi – simulação do hardware
+HiveMQ – broker MQTT público
+Node-RED – orquestração de fluxo de dados
+MySQL – persistência de dados
+DHT22 – sensor de temperatura e umidade
+HC-SR04 – sensor de distância
+JavaScript (Node-RED Function nodes)
+
+Instruções de execução:
+
+1. Preparação do ambiente
+Abrir o projeto no Wokwi
+Adicionar os sensores:
+DHT22
+HC-SR04
+
+Utilizar ESP32 como microcontrolador
+2. Configuração do ESP32
+Conectar ao Wi-Fi do Wokwi:
+Wokwi-GUEST
+Configurar MQTT:
+broker.hivemq.com
+porta 1883
+Executar o código para envio de dados
+
+3. Configuração do Node-RED
+Criar fluxo com:
+MQTT IN
+Function (validação e tratamento de dados)
+MySQL node
+Configurar tópicos:
+maquina1/temperatura
+maquina1/umidade
+maquina1/distancia
+
+4. Banco de dados MySQL
+
+Criar banco:
+
+CREATE DATABASE iot;
+
+Criar tabela:
+
+CREATE TABLE leituras (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    temperatura FLOAT,
+    umidade FLOAT,
+    distancia FLOAT,
+    data_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+5. Execução do sistema
+
+Iniciar ESP32 no Wokwi
+Iniciar fluxo no Node-RED
+Verificar recebimento no debug
+Validar inserção no MySQL
+Monitorar dashboard em tempo real
